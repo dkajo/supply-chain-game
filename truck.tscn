@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bjkhviq24hlog"]
+
+[ext_resource type="Script" uid="uid://bsccyx5wjitu0" path="res://truck.gd" id="1_61ijl"]
+[ext_resource type="Texture2D" uid="uid://bv8n65h7m7kgn" path="res://Assets/truck.png" id="1_ysele"]
+
+[node name="Truck" type="Area2D"]
+script = ExtResource("1_61ijl")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(668.745, 441.5)
+scale = Vector2(1.14216, 1.14216)
+texture = ExtResource("1_ysele")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(497, 328, 489, 507, 732, 508, 848, 509, 850, 436, 818, 383, 735, 382, 734, 326)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://drhsev80xy1d8"]
+
+[ext_resource type="Texture2D" uid="uid://8omeosaqone1" path="res://Assets/box.png" id="1_80c7e"]
+[ext_resource type="Script" uid="uid://qhpwt1t12txv" path="res://product.gd" id="1_qirud"]
+
+[sub_resource type="GDScript" id="GDScript_u8fb1"]
+script/source = "extends Sprite2D
+"
+
+[node name="Product" type="Area2D" groups=["product"]]
+script = ExtResource("1_qirud")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(631, 381)
+scale = Vector2(0.177371, 0.177371)
+texture = ExtResource("1_80c7e")
+script = SubResource("GDScript_u8fb1")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(698, 349, 697, 425, 637, 442, 573, 423, 574, 351, 632, 334)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
