@@ -23,3 +23,4 @@ mono_crash.*.json
 # Other
 export_presets.cfg
 *.log
+z.svg
