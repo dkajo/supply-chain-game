@@ -19,18 +19,18 @@ offset_bottom = 40.0
 
 [node name="StartButton" type="Button" parent="UI/Control"]
 layout_mode = 0
-offset_left = 91.0
-offset_top = 516.0
-offset_right = 137.0
-offset_bottom = 547.0
+offset_left = 198.0
+offset_top = 430.0
+offset_right = 259.0
+offset_bottom = 462.0
 text = "Start"
 
 [node name="StopButton" type="Button" parent="UI/Control"]
 layout_mode = 0
-offset_left = 158.0
-offset_top = 515.0
-offset_right = 201.0
-offset_bottom = 546.0
+offset_left = 270.0
+offset_top = 430.0
+offset_right = 313.0
+offset_bottom = 461.0
 text = "Stop"
 
 [node name="BalanceLabel" type="Label" parent="UI/Control"]
