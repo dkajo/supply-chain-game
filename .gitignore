@@ -24,3 +24,4 @@ mono_crash.*.json
 export_presets.cfg
 *.log
 z.svg
+drawing_board.svg

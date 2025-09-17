@@ -2,12 +2,13 @@
 
 [ext_resource type="Script" uid="uid://bh6cdnbejc6d5" path="res://level.gd" id="1_oi3di"]
 [ext_resource type="Texture2D" uid="uid://cq0dd42hqvd7t" path="res://Assets/background.png" id="1_u52ul"]
+[ext_resource type="Texture2D" uid="uid://hl65byud5eym" path="res://Assets/conveyor_belt.png" id="3_f2txt"]
 [ext_resource type="PackedScene" uid="uid://cqa28fdtdx1x2" path="res://machine.tscn" id="4_0b4ue"]
-[ext_resource type="Texture2D" uid="uid://l10d2ou1uh43" path="res://Assets/conveyor_belt.webp" id="4_f2txt"]
 [ext_resource type="PackedScene" uid="uid://bjkhviq24hlog" path="res://truck.tscn" id="6_1ainy"]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_oi3di")
+defect_chance = 0.5
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -19,18 +20,18 @@ offset_bottom = 40.0
 
 [node name="StartButton" type="Button" parent="UI/Control"]
 layout_mode = 0
-offset_left = 198.0
-offset_top = 430.0
-offset_right = 259.0
-offset_bottom = 462.0
+offset_left = 215.0
+offset_top = 447.0
+offset_right = 276.0
+offset_bottom = 479.0
 text = "Start"
 
 [node name="StopButton" type="Button" parent="UI/Control"]
 layout_mode = 0
-offset_left = 270.0
-offset_top = 430.0
-offset_right = 313.0
-offset_bottom = 461.0
+offset_left = 290.0
+offset_top = 447.0
+offset_right = 333.0
+offset_bottom = 478.0
 text = "Stop"
 
 [node name="BalanceLabel" type="Label" parent="UI/Control"]
@@ -44,13 +45,14 @@ position = Vector2(637, 360.25)
 scale = Vector2(1.78108, 1.54868)
 texture = ExtResource("1_u52ul")
 
-[node name="Machine" parent="." instance=ExtResource("4_0b4ue")]
-position = Vector2(-22, 53)
-
 [node name="ConveyorBelt" type="Sprite2D" parent="."]
-position = Vector2(659.038, 566.5)
-scale = Vector2(0.487469, 0.487469)
-texture = ExtResource("4_f2txt")
+position = Vector2(593, 517)
+scale = Vector2(0.478547, 0.478547)
+texture = ExtResource("3_f2txt")
+
+[node name="Machine" parent="." instance=ExtResource("4_0b4ue")]
+z_index = 1
+position = Vector2(-22, 53)
 
 [node name="Truck" parent="." instance=ExtResource("6_1ainy")]
 position = Vector2(390, -45)
