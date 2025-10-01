@@ -27,6 +27,6 @@ func _on_stop_button_pressed() -> void:
 	$ProductionTimer.stop()
 
 # Fired when a product enters the truck, and simulates a product being sold
-func _on_truck_loaded_product():
-	balance += 1
+func _on_truck_loaded_product(product): # Receive the product from the signal
+	balance += product.value
 	$UI/Control/BalanceLabel.text = "Balance: %d" % balance
