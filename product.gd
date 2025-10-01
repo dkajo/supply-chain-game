@@ -6,7 +6,7 @@ extends Area2D
 @export var defect_value := 4 # Which value to use if the product is defect
 @export var is_defect := false : set = _set_defect # Defines a setter function to the property.
 
-var value: int : get = _get_value
+var value: int : get = _get_value # Defines a getter function for the variable
 
 func _get_value() -> int:
 	return defect_value if is_defect else base_value
