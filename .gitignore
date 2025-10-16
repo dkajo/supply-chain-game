@@ -25,3 +25,4 @@ export_presets.cfg
 *.log
 z.svg
 drawing_board.svg
+*.dmg
