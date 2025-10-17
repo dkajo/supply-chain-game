@@ -26,3 +26,5 @@ export_presets.cfg
 z.svg
 drawing_board.svg
 *.dmg
+*.zip
+*.exe
