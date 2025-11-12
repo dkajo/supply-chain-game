@@ -7,11 +7,14 @@ extends Node2D
 @export var maintenance_cost := 50
 @export var maintenance_improvement := 0.5 # Improves defect chance by 50%
 
+# --- Getters & Setters ---
 func get_maintenance_cost() -> int:
 	return maintenance_cost
 
+# --- Signals ---
 signal maintenance_applied()
 
+# --- Functions ---
 func roll_is_defect (rng: RandomNumberGenerator) -> bool:
 	return rng.randf() < defect_chance
 

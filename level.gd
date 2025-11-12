@@ -2,7 +2,10 @@ extends Node2D
 
 var product_scene: PackedScene = load("res://product.tscn") # Enable products to be instantiated within this scene
 var balance: int = 0 # Score tracker
-var produced_count := 0 # Counts the number of prroducts produced.
+var produced_count := 0 # Counts the number of products produced.
+var turn := 0 # Keeps track of the runs
+var is_active_turn := false # Boolean keeps track of active turn
+@export var max_turn := 5 # How many turns until Game Over
 @export var production_limit := 10 # Limit how many to produce before stopping.
  
 var rng = RandomNumberGenerator.new()
