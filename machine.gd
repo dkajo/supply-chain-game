@@ -7,6 +7,9 @@ extends Node2D
 @export var maintenance_cost := 50
 @export var maintenance_improvement := 0.5 # Improves defect chance by 50%
 
+# --- Capacity ---
+@export var capacity := 0.5 # Products per second
+
 # --- Getters & Setters ---
 func get_maintenance_cost() -> int:
 	return maintenance_cost
