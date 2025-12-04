@@ -1,23 +1,23 @@
 extends Node2D
 
 var product_scene: PackedScene = load("res://product.tscn") # Enable products to be instantiated within this scene
-var balance: int = 0 # Score tracker
-var produced_count := 0 # Counts the number of products produced.
+var balance: int = 100 # Score tracker
  
 var rng = RandomNumberGenerator.new()
 
 func _ready():
 	rng.randomize()
+	$UI/Control/BalanceLabel.text = "Balance: %d" % balance
+	
+	$Machine.produce_product.connect(_on_produce_product)
 	# Connect to the product_loaded signal in truck.gd and call method in this script
 	$Truck.product_entered.connect(_on_truck_loaded_product)
 
-# Production timer controls production and is thereby the primary game engine
-func _on_production_timer_timeout(): # Holds everything that needs to happen as a product is produced
+func _on_produce_product():
 	var product = product_scene.instantiate() # Create an instance of a product
 	product.is_defect = $Machine.roll_is_defect(rng) # Defect or not decided by machine
 	
 	add_child(product) # Attach node to scene tree, adds product to level.
-	produced_count += 1 # Increment after produced product.
 
 # --- Money Helpers ---
 func can_afford(price: int) -> bool:
@@ -28,12 +28,11 @@ func spend(price: int) -> void:
 	$UI/Control/BalanceLabel.text = "Balance: %d" % balance
 
 # --- Button Signals ---
-func _on_start_button_pressed() -> void:
-	$UI/Control/BalanceLabel.text = "Balance: %d" % balance
-	$ProductionTimer.start()
+func _on_start_button_pressed():
+	$Machine.start_production()
 
-func _on_stop_button_pressed() -> void:
-	$ProductionTimer.stop()
+func _on_stop_button_pressed():
+	$Machine.stop_production()
 
 func _on_maintenance_btn_pressed() -> void:
 	if can_afford($Machine.get_maintenance_cost()):

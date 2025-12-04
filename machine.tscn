@@ -10,3 +10,7 @@ script = ExtResource("1_13m1l")
 position = Vector2(290, 405)
 scale = Vector2(0.418129, 0.418129)
 texture = ExtResource("1_6a4ke")
+
+[node name="ProductionTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="ProductionTimer" to="." method="_on_production_timer_timeout"]

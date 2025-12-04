@@ -81,9 +81,6 @@ position = Vector2(-22, 53)
 [node name="Truck" parent="." instance=ExtResource("6_1ainy")]
 position = Vector2(390, -45)
 
-[node name="ProductionTimer" type="Timer" parent="."]
-
 [connection signal="pressed" from="UI/Control/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="UI/Control/StopButton" to="." method="_on_stop_button_pressed"]
 [connection signal="pressed" from="UI/Control/MaintenanceBtn" to="." method="_on_maintenance_btn_pressed"]
-[connection signal="timeout" from="ProductionTimer" to="." method="_on_production_timer_timeout"]
