@@ -3,7 +3,7 @@ extends Node2D
 var produced_count := 0 # Counts the number of products produced.
 
 # Chance of a product being defect.
-@export_range (0.0, 1.0, 0.01) var defect_chance := 0.6
+@export_range (0.0, 1.0, 0.01) var defect_chance := 0.8
 
 # --- Maintenance ---
 @export var maintenance_cost := 50
