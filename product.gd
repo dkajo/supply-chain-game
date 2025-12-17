@@ -4,12 +4,16 @@ extends Area2D
 @export var speed := 200
 @export var base_value := 10 # Added value attribute to dynamically change the value depending on other product properties
 @export var defect_value := 4 # Which value to use if the product is defect
+@export var production_cost := 6 # 
 @export var is_defect := false : set = _set_defect # Defines a setter function to the property.
 
 var value: int : get = _get_value # Defines a getter function for the variable
 
 func _get_value() -> int:
 	return defect_value if is_defect else base_value
+
+func _get_production_cost() -> int:
+	return production_cost
 
 func _set_defect(value: bool) -> void:
 	is_defect = value

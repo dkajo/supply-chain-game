@@ -15,9 +15,11 @@ func _ready():
 
 func _on_produce_product():
 	var product = product_scene.instantiate() # Create an instance of a product
+	balance -= product._get_production_cost() # Reduces balance by the production cost
 	product.is_defect = $Machine.roll_is_defect(rng) # Defect or not decided by machine
 	
 	add_child(product) # Attach node to scene tree, adds product to level.
+	$UI/Control/BalanceLabel.text = "Balance: %d" % balance
 
 # --- Money Helpers ---
 func can_afford(price: int) -> bool:
