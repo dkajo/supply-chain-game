@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://drpixk3fevjyc"]
+[gd_scene load_steps=11 format=3 uid="uid://drpixk3fevjyc"]
 
 [ext_resource type="Script" uid="uid://bh6cdnbejc6d5" path="res://level.gd" id="1_oi3di"]
 [ext_resource type="Texture2D" uid="uid://cq0dd42hqvd7t" path="res://Assets/background.png" id="1_u52ul"]
@@ -17,6 +17,9 @@ bg_color = Color(0.858824, 0.176471, 0, 0.784314)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_km5ld"]
 bg_color = Color(0.860567, 0.177546, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i2t4f"]
+bg_color = Color(0.852974, 0.485481, 0.388078, 0.847059)
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_oi3di")
@@ -64,6 +67,40 @@ offset_bottom = 704.0
 text = "Maintenance
 50"
 
+[node name="GameOver" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -3.0
+offset_top = 1.0
+offset_right = 1296.0
+offset_bottom = 735.0
+
+[node name="Background" type="Panel" parent="UI/GameOver"]
+layout_mode = 0
+offset_left = -22.0
+offset_top = -22.0
+offset_right = 1299.0
+offset_bottom = 742.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_i2t4f")
+
+[node name="GameOverLabel" type="Label" parent="UI/GameOver"]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 200.0
+offset_right = 1060.0
+offset_bottom = 405.0
+theme_override_font_sizes/font_size = 150
+text = "GAME OVER"
+
+[node name="StartButton" type="Button" parent="UI/GameOver"]
+offset_left = 205.0
+offset_top = 450.0
+offset_right = 266.0
+offset_bottom = 482.0
+theme_override_styles/hover = SubResource("StyleBoxFlat_f2txt")
+theme_override_styles/normal = SubResource("StyleBoxFlat_1ainy")
+text = "START"
+
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(637, 360.25)
 scale = Vector2(1.78108, 1.54868)
@@ -84,3 +121,4 @@ position = Vector2(390, -45)
 [connection signal="pressed" from="UI/Control/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="UI/Control/StopButton" to="." method="_on_stop_button_pressed"]
 [connection signal="pressed" from="UI/Control/MaintenanceBtn" to="." method="_on_maintenance_btn_pressed"]
+[connection signal="pressed" from="UI/GameOver/StartButton" to="." method="_on_start_button_pressed"]

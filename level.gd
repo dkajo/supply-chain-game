@@ -15,6 +15,7 @@ func is_game_running() -> bool:
 	return game_state == GameState.RUNNING
 
 func start_game(): # Controls what happens when the game starts
+	$UI/GameOver.visible = false
 	game_state = GameState.RUNNING
 	update_balance(STARTING_BALANCE)
 	print("Game started")
@@ -22,6 +23,7 @@ func start_game(): # Controls what happens when the game starts
 func game_over(): # Controls what happens upon game over
 	$Machine.stop_production()
 	game_state = GameState.GAME_OVER
+	$UI/GameOver.visible = true
 	print("Game Over")
 
 func _ready():
