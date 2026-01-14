@@ -68,6 +68,7 @@ text = "Maintenance
 50"
 
 [node name="GameOver" type="Control" parent="UI"]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = -3.0
@@ -101,10 +102,19 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_f2txt")
 theme_override_styles/normal = SubResource("StyleBoxFlat_1ainy")
 text = "START"
 
-[node name="Background" type="Sprite2D" parent="."]
-position = Vector2(637, 360.25)
+[node name="Background" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -207.0
+offset_top = -195.0
+offset_right = 789.0
+offset_bottom = 555.0
+grow_horizontal = 2
+grow_vertical = 2
 scale = Vector2(1.78108, 1.54868)
 texture = ExtResource("1_u52ul")
+stretch_mode = 6
 
 [node name="ConveyorBelt" type="Sprite2D" parent="."]
 position = Vector2(593, 517)
