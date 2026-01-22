@@ -67,6 +67,15 @@ offset_bottom = 704.0
 text = "Maintenance
 50"
 
+[node name="Score" type="Label" parent="UI/Control"]
+layout_mode = 0
+offset_left = 800.0
+offset_top = 320.0
+offset_right = 836.0
+offset_bottom = 343.0
+theme_override_colors/font_color = Color(0.960784, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+
 [node name="GameOver" type="Control" parent="UI"]
 visible = false
 layout_mode = 3
@@ -77,6 +86,7 @@ offset_right = 1296.0
 offset_bottom = 735.0
 
 [node name="Background" type="Panel" parent="UI/GameOver"]
+visible = false
 layout_mode = 0
 offset_left = -22.0
 offset_top = -22.0
@@ -94,6 +104,7 @@ theme_override_font_sizes/font_size = 150
 text = "GAME OVER"
 
 [node name="StartButton" type="Button" parent="UI/GameOver"]
+layout_mode = 0
 offset_left = 205.0
 offset_top = 450.0
 offset_right = 266.0

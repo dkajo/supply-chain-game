@@ -66,12 +66,24 @@ func _on_maintenance_btn_pressed() -> void:
 
 # Fired when a product enters the truck, and simulates a product being sold
 func _on_truck_loaded_product(product): # Receive the product from the signal
+	update_score_label(product.value - product.production_cost)
 	update_balance(product.value - product.production_cost)
-	# balance += product.value
-	# $UI/Control/BalanceLabel.text = "Balance: %d" % balance
 
 func update_balance(input_value):
 	balance += input_value
 	$UI/Control/BalanceLabel.text = "Balance: %d" % balance
 	if balance < 0:
 		game_over()
+
+func update_score_label(score):
+	var label = $UI/Control/Score
+	var s = str(score)
+	if score >= 0:
+		s = '+' + s
+		label.add_theme_color_override("font_color", Color.WEB_GREEN)
+	else:
+		label.add_theme_color_override("font_color", Color.RED)
+	label.visible = true
+	label.text = s
+	await get_tree().create_timer(0.8).timeout
+	label.visible = false
