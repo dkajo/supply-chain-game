@@ -2,7 +2,7 @@ extends Node2D
 
 const STARTING_BALANCE = 10
 
-var product_scene: PackedScene = load("res://product.tscn") # Enable products to be instantiated within this scene
+var product_scene: PackedScene = load("res://Scenes/product.tscn") # Enable products to be instantiated within this scene
 var balance: int # Score tracker
  
 var rng = RandomNumberGenerator.new()

@@ -1,10 +1,10 @@
 [gd_scene load_steps=11 format=3 uid="uid://drpixk3fevjyc"]
 
-[ext_resource type="Script" uid="uid://bh6cdnbejc6d5" path="res://level.gd" id="1_oi3di"]
+[ext_resource type="Script" uid="uid://bh6cdnbejc6d5" path="res://Scripts/level.gd" id="1_oi3di"]
 [ext_resource type="Texture2D" uid="uid://cq0dd42hqvd7t" path="res://Assets/background.png" id="1_u52ul"]
 [ext_resource type="Texture2D" uid="uid://hl65byud5eym" path="res://Assets/conveyor_belt.png" id="3_f2txt"]
-[ext_resource type="PackedScene" uid="uid://cqa28fdtdx1x2" path="res://machine.tscn" id="4_0b4ue"]
-[ext_resource type="PackedScene" uid="uid://bjkhviq24hlog" path="res://truck.tscn" id="6_1ainy"]
+[ext_resource type="PackedScene" uid="uid://cqa28fdtdx1x2" path="res://Scenes/machine.tscn" id="4_0b4ue"]
+[ext_resource type="PackedScene" uid="uid://bjkhviq24hlog" path="res://Scenes/truck.tscn" id="6_1ainy"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f2txt"]
 bg_color = Color(0, 0.72549, 0.117647, 0.572549)

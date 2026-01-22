@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bjkhviq24hlog"]
 
-[ext_resource type="Script" uid="uid://bsccyx5wjitu0" path="res://truck.gd" id="1_61ijl"]
+[ext_resource type="Script" uid="uid://bsccyx5wjitu0" path="res://Scripts/truck.gd" id="1_61ijl"]
 [ext_resource type="Texture2D" uid="uid://bv8n65h7m7kgn" path="res://Assets/truck.png" id="1_ysele"]
 
 [node name="Truck" type="Area2D"]
