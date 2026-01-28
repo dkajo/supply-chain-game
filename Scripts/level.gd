@@ -2,6 +2,8 @@ extends Node2D
 
 const STARTING_BALANCE = 10
 
+@onready var ui = $UiFacade
+
 var product_scene: PackedScene = load("res://Scenes/product.tscn") # Enable products to be instantiated within this scene
 var balance: int # Score tracker
  
@@ -15,7 +17,7 @@ func is_game_running() -> bool:
 	return game_state == GameState.RUNNING
 
 func start_game(): # Controls what happens when the game starts
-	$UI/GameOver.visible = false
+	ui.hide_game_over()
 	game_state = GameState.RUNNING
 	update_balance(STARTING_BALANCE)
 	print("Game started")
@@ -23,11 +25,17 @@ func start_game(): # Controls what happens when the game starts
 func game_over(): # Controls what happens upon game over
 	$Machine.stop_production()
 	game_state = GameState.GAME_OVER
-	$UI/GameOver.visible = true
-	print("Game Over")
+	ui.show_game_over()
+	# $UiFacade/GameOver.visible = true
+	
 
 func _ready():
 	rng.randomize()
+	
+	# --- Connect signals to functions ---
+	ui.start_button_pressed.connect(_on_start_button_pressed)
+	ui.stop_button_pressed.connect(_on_stop_button_pressed)
+	ui.maintenance_button_pressed.connect(_on_maintenance_btn_pressed)
 	
 	$Machine.produce_product.connect(_on_produce_product)
 	# Connect to the product_loaded signal in truck.gd and call method in this script
@@ -45,7 +53,9 @@ func can_afford(price: int) -> bool:
 
 func spend(price: int) -> void:
 	balance -= price
-	$UI/Control/BalanceLabel.text = "Balance: %d" % balance
+	#$UI/Control/BalanceLabel.text = "Balance: %d" % balance
+	#ui.update_balance_label(balance)
+	update_balance(balance)
 
 # --- Button Signals ---
 func _on_start_button_pressed():
@@ -71,7 +81,8 @@ func _on_truck_loaded_product(product): # Receive the product from the signal
 
 func update_balance(input_value):
 	balance += input_value
-	$UI/Control/BalanceLabel.text = "Balance: %d" % balance
+	# $UI/Control/BalanceLabel.text = "Balance: %d" % balance
+	ui.update_balance_label(balance)
 	if balance < 0:
 		game_over()
 

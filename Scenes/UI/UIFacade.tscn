@@ -1,0 +1,112 @@
+[gd_scene load_steps=9 format=3 uid="uid://b6i4ou8t1n8lh"]
+
+[ext_resource type="Script" uid="uid://dkajc6be2rsx5" path="res://Scripts/ui_facade.gd" id="1_h1k6b"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8v2eh"]
+bg_color = Color(1, 0.352941, 0.160784, 0.654902)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h1k6b"]
+bg_color = Color(0, 0.72549, 0.117647, 0.572549)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b3egh"]
+bg_color = Color(2.26215e-06, 0.727337, 0.118172, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qxo88"]
+bg_color = Color(0, 0.72549, 0.117647, 0.572549)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rbqoo"]
+bg_color = Color(2.26215e-06, 0.727337, 0.118172, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1g3k4"]
+bg_color = Color(0.858824, 0.176471, 0, 0.784314)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f6eae"]
+bg_color = Color(0.860567, 0.177546, 0, 1)
+
+[node name="UiFacade" type="CanvasLayer"]
+script = ExtResource("1_h1k6b")
+
+[node name="GameOver" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Background" type="Panel" parent="GameOver"]
+layout_mode = 0
+offset_left = -16.0
+offset_top = -15.0
+offset_right = 1297.0
+offset_bottom = 740.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_8v2eh")
+
+[node name="GameOverLabel" type="Label" parent="GameOver"]
+layout_mode = 0
+offset_left = 156.0
+offset_top = 197.0
+offset_right = 1131.0
+offset_bottom = 429.0
+theme_override_font_sizes/font_size = 170
+text = "GAME OVER"
+
+[node name="StartButton" type="Button" parent="GameOver"]
+layout_mode = 0
+offset_left = 205.0
+offset_top = 450.0
+offset_right = 266.0
+offset_bottom = 482.0
+theme_override_styles/hover = SubResource("StyleBoxFlat_h1k6b")
+theme_override_styles/normal = SubResource("StyleBoxFlat_b3egh")
+text = "START"
+
+[node name="HUD" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="StartButton" type="Button" parent="HUD"]
+offset_left = 205.0
+offset_top = 450.0
+offset_right = 266.0
+offset_bottom = 482.0
+theme_override_styles/hover = SubResource("StyleBoxFlat_qxo88")
+theme_override_styles/normal = SubResource("StyleBoxFlat_rbqoo")
+text = "START"
+
+[node name="BalanceLabel" type="Label" parent="HUD"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+
+[node name="Score" type="Label" parent="HUD"]
+layout_mode = 0
+offset_left = 800.0
+offset_top = 320.0
+offset_right = 836.0
+offset_bottom = 343.0
+theme_override_colors/font_color = Color(0.960784, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+
+[node name="StopButton" type="Button" parent="HUD"]
+offset_left = 275.0
+offset_top = 450.0
+offset_right = 336.0
+offset_bottom = 482.0
+theme_override_styles/pressed = SubResource("StyleBoxFlat_1g3k4")
+theme_override_styles/normal = SubResource("StyleBoxFlat_f6eae")
+text = "STOP"
+
+[node name="MaintenanceBtn" type="Button" parent="HUD"]
+offset_left = 20.0
+offset_top = 650.0
+offset_right = 129.0
+offset_bottom = 704.0
+text = "Maintenance
+50"
+
+[connection signal="pressed" from="HUD/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="HUD/StopButton" to="." method="_on_stop_button_pressed"]
+[connection signal="pressed" from="HUD/MaintenanceBtn" to="." method="_on_maintenance_btn_pressed"]
