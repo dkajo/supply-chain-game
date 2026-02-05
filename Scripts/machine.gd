@@ -6,7 +6,7 @@ var produced_count := 0 # Counts the number of products produced.
 @export_range (0.0, 1.0, 0.01) var defect_chance := 0.8
 
 # --- Maintenance ---
-@export var maintenance_cost := 50
+@export var maintenance_cost := 10
 @export var maintenance_improvement := 0.5 # Improves defect chance by 50%
 
 # --- Production speed ---
