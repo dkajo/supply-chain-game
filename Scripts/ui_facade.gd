@@ -21,6 +21,19 @@ func update_balance_label(balance):
 func update_truck_load_label(load, capacity):
 	$HUD/TruckLoadLabel.text = "Load: %d/%d" % [load, capacity]
 
+func update_score_label(score):
+	var label = $HUD/Score
+	var s = str(score)
+	if score >= 0:
+		s = '+' + s
+		label.add_theme_color_override("font_color", Color.WEB_GREEN)
+	else:
+		label.add_theme_color_override("font_color", Color.RED)
+	label.visible = true
+	label.text = s
+	await get_tree().create_timer(0.8).timeout
+	label.visible = false
+
 # --- Button functions ---
 func _on_start_button_pressed() -> void:
 	emit_signal("start_button_pressed")

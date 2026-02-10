@@ -54,8 +54,6 @@ func can_afford(price: int) -> bool:
 
 func spend(price: int) -> void:
 	balance -= price
-	#$UI/Control/BalanceLabel.text = "Balance: %d" % balance
-	#ui.update_balance_label(balance)
 	update_balance(balance)
 
 # --- Button Signals ---
@@ -89,17 +87,7 @@ func update_balance(input_value):
 		game_over()
 
 func update_score_label(score):
-	var label = $UI/Control/Score
-	var s = str(score)
-	if score >= 0:
-		s = '+' + s
-		label.add_theme_color_override("font_color", Color.WEB_GREEN)
-	else:
-		label.add_theme_color_override("font_color", Color.RED)
-	label.visible = true
-	label.text = s
-	await get_tree().create_timer(0.8).timeout
-	label.visible = false
+	ui.update_score_label(score)
 
 func update_truck_load_label(load, capacity):
 	ui.update_truck_load_label(load, capacity)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://drpixk3fevjyc"]
+[gd_scene load_steps=7 format=3 uid="uid://drpixk3fevjyc"]
 
 [ext_resource type="Script" uid="uid://bh6cdnbejc6d5" path="res://Scripts/level.gd" id="1_oi3di"]
 [ext_resource type="Texture2D" uid="uid://cq0dd42hqvd7t" path="res://Assets/background.png" id="1_u52ul"]
@@ -7,55 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://b6i4ou8t1n8lh" path="res://Scenes/UI/UIFacade.tscn" id="6_0f350"]
 [ext_resource type="PackedScene" uid="uid://bjkhviq24hlog" path="res://Scenes/truck.tscn" id="6_1ainy"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n6hdu"]
-bg_color = Color(0.858824, 0.176471, 0, 0.784314)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_km5ld"]
-bg_color = Color(0.860567, 0.177546, 0, 1)
-
 [node name="Level" type="Node2D"]
 script = ExtResource("1_oi3di")
 
 [node name="UI" type="CanvasLayer" parent="."]
-
-[node name="Control" type="Control" parent="UI"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="StopButton" type="Button" parent="UI/Control"]
-layout_mode = 0
-offset_left = 275.0
-offset_top = 450.0
-offset_right = 336.0
-offset_bottom = 482.0
-theme_override_styles/pressed = SubResource("StyleBoxFlat_n6hdu")
-theme_override_styles/normal = SubResource("StyleBoxFlat_km5ld")
-text = "STOP"
-
-[node name="BalanceLabel" type="Label" parent="UI/Control"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-
-[node name="MaintenanceBtn" type="Button" parent="UI/Control"]
-layout_mode = 0
-offset_left = 20.0
-offset_top = 650.0
-offset_right = 129.0
-offset_bottom = 704.0
-text = "Maintenance"
-
-[node name="Score" type="Label" parent="UI/Control"]
-layout_mode = 0
-offset_left = 800.0
-offset_top = 320.0
-offset_right = 836.0
-offset_bottom = 343.0
-theme_override_colors/font_color = Color(0.960784, 0, 0, 1)
-theme_override_font_sizes/font_size = 40
 
 [node name="Background" type="TextureRect" parent="."]
 anchors_preset = 15
@@ -85,6 +40,3 @@ position = Vector2(-22, 53)
 
 [node name="Truck" parent="." instance=ExtResource("6_1ainy")]
 position = Vector2(390, -45)
-
-[connection signal="pressed" from="UI/Control/StopButton" to="." method="_on_stop_button_pressed"]
-[connection signal="pressed" from="UI/Control/MaintenanceBtn" to="." method="_on_maintenance_btn_pressed"]
