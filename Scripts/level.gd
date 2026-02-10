@@ -78,10 +78,11 @@ func _on_maintenance_btn_pressed() -> void:
 func _on_truck_loaded_product(product): # Receive the product from the signal
 	update_score_label(product.value - product.production_cost)
 	update_balance(product.value - product.production_cost)
+	ui.update_truck_load_label($Truck._get_load(), $Truck._get_capacity())
 
+# --- Label Updates ---
 func update_balance(input_value):
 	balance += input_value
-	# $UI/Control/BalanceLabel.text = "Balance: %d" % balance
 	ui.update_balance_label(balance)
 	if balance < 0:
 		game_over()

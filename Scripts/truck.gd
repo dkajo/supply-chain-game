@@ -2,7 +2,7 @@ extends Area2D
 
 var capacity: int = 4 : set = _set_capacity, get = _get_capacity
 var load: int : set = _set_load, get = _get_load
-var is_full: bool
+var is_full: bool 
 
 signal product_entered # Create a signal
 
