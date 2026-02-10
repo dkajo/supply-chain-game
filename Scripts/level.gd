@@ -56,6 +56,10 @@ func spend(price: int) -> void:
 	balance -= price
 	update_balance(balance)
 
+func scrap() -> void:
+	balance -= 2
+	update_balance(balance)
+
 # --- Button Signals ---
 func _on_start_button_pressed():
 	# Game starts when Start button is pressed
