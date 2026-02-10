@@ -4,6 +4,9 @@ var capacity: int = 4 : set = _set_capacity, get = _get_capacity
 var load: int : set = _set_load, get = _get_load
 var is_full: bool 
 
+enum State { AVAILABLE, AWAY }
+var state: State = State.AVAILABLE
+
 signal product_entered # Create a signal
 
 # Getters & Setters
@@ -17,6 +20,7 @@ func _set_load(value: int) -> void:
 	load = value
 	if load == capacity:
 		is_full = true
+		state = State.AWAY
 		print ("Truck is full!") # Debugging
 
 func _get_load() -> int:
@@ -24,7 +28,10 @@ func _get_load() -> int:
 
 # Detects if an area2d node enters the trucks collision area
 func _on_area_entered(area: Area2D) -> void: 
-	if area.is_in_group("product"):
+	if area.is_in_group("product") and state == State.AVAILABLE:
+		load += 1
 		emit_signal("product_entered", area) # Added area to emit the area to the signal function so properties can be used
 		area.queue_free() # Removes product
-		load += 1
+	else:
+		print ("Truck is full and cannot accept more products")
+		area.queue_free() # Removes product
