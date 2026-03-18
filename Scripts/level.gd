@@ -20,7 +20,7 @@ func start_game(): # Controls what happens when the game starts
 	ui.hide_game_over()
 	game_state = GameState.RUNNING
 	update_balance(STARTING_BALANCE)
-	update_truck_load_label($Truck._get_load(), $Truck._get_capacity())
+	update_truck_load_label($Truck.load, $Truck.capacity)
 	print("Game started")
 
 func game_over(): # Controls what happens upon game over
@@ -81,7 +81,7 @@ func _on_maintenance_btn_pressed() -> void:
 func _on_truck_loaded_product(product): # Receive the product from the signal
 	update_score_label(product.value - product.production_cost)
 	update_balance(product.value - product.production_cost)
-	update_truck_load_label($Truck._get_load(), $Truck._get_capacity())
+	update_truck_load_label($Truck.load, $Truck.capacity)
 
 # --- Label Updates ---
 func update_balance(input_value):
