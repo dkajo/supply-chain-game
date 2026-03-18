@@ -11,9 +11,6 @@ position = Vector2(668.745, 441.5)
 scale = Vector2(1.14216, 1.14216)
 texture = ExtResource("1_ysele")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(497, 328, 489, 507, 732, 508, 848, 509, 850, 436, 818, 383, 735, 382, 734, 326)
-
 [node name="TravelTimer" type="Timer" parent="."]
 one_shot = true
 

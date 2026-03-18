@@ -33,14 +33,9 @@ var load: int:
 			print("Truck is full!")
 
 # Detects if an area2d node enters the trucks collision area
-func _on_area_entered(area: Area2D) -> void: 
-	if area.is_in_group("product") and state == State.AVAILABLE:
-		load += 1
-		emit_signal("product_entered", area) # Added area to emit the area to the signal function so properties can be used
-		area.queue_free() # Removes product
-	else:
-		print ("Truck is full and cannot accept more products")
-		area.queue_free() # Removes product
+func load_product(product) -> void: 
+	load += 1
+	emit_signal("product_entered", product) # Added area to emit the area to the signal function so properties can be used
 
 func _ready():
 	position = start_position
@@ -56,3 +51,6 @@ func _on_travel_timer_timeout() -> void:
 	is_full = false
 	state = State.AVAILABLE
 	print ("Truck Returned")
+
+func can_accept_product() -> bool: # Returns true if the truck can accept products
+	return state == State.AVAILABLE and load < capacity

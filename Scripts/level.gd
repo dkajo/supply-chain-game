@@ -27,8 +27,7 @@ func game_over(): # Controls what happens upon game over
 	$Machine.stop_production()
 	game_state = GameState.GAME_OVER
 	ui.show_game_over()
-	# $UiFacade/GameOver.visible = true
-	
+	# $UiFacade/GameOver.visible = true	
 
 func _ready():
 	rng.randomize()
@@ -56,9 +55,13 @@ func spend(price: int) -> void:
 	balance -= price
 	update_balance(balance)
 
-func scrap() -> void:
-	balance -= 2
-	update_balance(balance)
+func scrap(product) -> void:
+	var result = product.scrap_value - product.production_cost
+	
+	update_score_label(result)
+	update_balance(result) # optional scrap penalty
+	
+	update_truck_load_label($Truck.load, $Truck.capacity)
 
 # --- Button Signals ---
 func _on_start_button_pressed():

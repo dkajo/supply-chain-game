@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://drpixk3fevjyc"]
+[gd_scene load_steps=8 format=3 uid="uid://drpixk3fevjyc"]
 
 [ext_resource type="Script" uid="uid://bh6cdnbejc6d5" path="res://Scripts/level.gd" id="1_oi3di"]
 [ext_resource type="Texture2D" uid="uid://cq0dd42hqvd7t" path="res://Assets/background.png" id="1_u52ul"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cqa28fdtdx1x2" path="res://Scenes/machine.tscn" id="4_0b4ue"]
 [ext_resource type="PackedScene" uid="uid://b6i4ou8t1n8lh" path="res://Scenes/UI/UIFacade.tscn" id="6_0f350"]
 [ext_resource type="PackedScene" uid="uid://bjkhviq24hlog" path="res://Scenes/truck.tscn" id="6_1ainy"]
+[ext_resource type="PackedScene" uid="uid://bb0wl4thlavh0" path="res://Scenes/loadingzone.tscn" id="7_8c0lf"]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_oi3di")
@@ -40,3 +41,5 @@ position = Vector2(-22, 53)
 
 [node name="Truck" parent="." instance=ExtResource("6_1ainy")]
 position = Vector2(390, -45)
+
+[node name="Loadingzone" parent="." instance=ExtResource("7_8c0lf")]
