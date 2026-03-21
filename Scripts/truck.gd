@@ -13,6 +13,7 @@ var state: State = State.AVAILABLE
 
 signal product_entered # Create a signal
 signal capacity_upgrade_applied()
+signal truck_returned
 
 @onready var travel_timer: Timer = $TravelTimer
 var start_position = Vector2(420, 30)
@@ -53,7 +54,7 @@ func _process(delta: float): # Only want the truck to move when capacity is full
 
 func _on_travel_timer_timeout() -> void:
 	reset_truck()
-	print ("Truck Returned")
+	emit_signal ("truck_returned")
 
 func can_accept_product() -> bool: # Returns true if the truck can accept products
 	return state == State.AVAILABLE and load < capacity

@@ -45,6 +45,8 @@ func _ready():
 	$Machine.produce_product.connect(_on_produce_product)
 	# Connect to the product_loaded signal in truck.gd and call method in this script
 	$Truck.product_entered.connect(_on_truck_loaded_product)
+	$Truck.capacity_upgrade_applied.connect(_on_capacity_upgrade_applied)
+	$Truck.truck_returned.connect(_on_truck_returned)
 
 func _on_produce_product():
 	var product = product_scene.instantiate() # Create an instance of a product
@@ -108,9 +110,14 @@ func _on_capacity_upgrade_btn_pressed() -> void:
 	if can_afford($Truck.get_capacity_upgrade_cost()):
 		decrease_balance($Truck.get_capacity_upgrade_cost())
 		$Truck.apply_capacity_upgrade()
-		update_truck_load_label($Truck.load, $Truck.capacity)
 	else:
 		print("Not enough balance")
+
+func _on_capacity_upgrade_applied():
+	update_truck_load_label($Truck.load, $Truck.capacity)
+
+func _on_truck_returned():
+	update_truck_load_label($Truck.load, $Truck.capacity)
 
 # Fired when a product enters the truck, and simulates a product being sold
 func _on_truck_loaded_product(product): # Receive the product from the signal
