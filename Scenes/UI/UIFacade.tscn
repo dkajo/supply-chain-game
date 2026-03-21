@@ -74,23 +74,32 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_1g3k4")
 theme_override_styles/normal = SubResource("StyleBoxFlat_f6eae")
 text = "STOP"
 
-[node name="MaintenanceBtn" type="Button" parent="HUD"]
+[node name="QualityUpgradeBtn" type="Button" parent="HUD"]
 layout_mode = 0
 offset_left = 20.0
 offset_top = 650.0
 offset_right = 129.0
 offset_bottom = 704.0
-text = "Maintenance
+text = "Quality Upgrade
 10"
 
 [node name="SpeedUpgradeBtn" type="Button" parent="HUD"]
 layout_mode = 0
-offset_left = 158.0
+offset_left = 180.0
 offset_top = 650.0
-offset_right = 284.0
+offset_right = 306.0
 offset_bottom = 704.0
 text = "Speed Upgrade
 10"
+
+[node name="CapacityUpgradeBtn" type="Button" parent="HUD"]
+layout_mode = 0
+offset_left = 331.0
+offset_top = 650.0
+offset_right = 457.0
+offset_bottom = 704.0
+text = "Capacity Upgrade
+20"
 
 [node name="GameOver" type="Control" parent="."]
 visible = false
@@ -128,6 +137,7 @@ text = "START"
 
 [connection signal="pressed" from="HUD/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="HUD/StopButton" to="." method="_on_stop_button_pressed"]
-[connection signal="pressed" from="HUD/MaintenanceBtn" to="." method="_on_maintenance_btn_pressed"]
+[connection signal="pressed" from="HUD/QualityUpgradeBtn" to="." method="_on_quality_upgrade_btn_pressed"]
 [connection signal="pressed" from="HUD/SpeedUpgradeBtn" to="." method="_on_speed_upgrade_btn_pressed"]
+[connection signal="pressed" from="HUD/CapacityUpgradeBtn" to="." method="_on_capacity_upgrade_btn_pressed"]
 [connection signal="pressed" from="GameOver/StartButton" to="." method="_on_start_button_pressed"]

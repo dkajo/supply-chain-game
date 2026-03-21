@@ -6,8 +6,8 @@ var produced_count := 0 # Counts the number of products produced.
 @export_range (0.0, 1.0, 0.01) var defect_chance := 0.9
 
 # --- Maintenance ---
-@export var maintenance_cost := 10
-@export var maintenance_improvement := 0.5 # Improves defect chance by 50%
+@export var quality_upgrade_cost := 10
+@export var quality_upgrade_multiplier := 0.5 # Improves defect chance by 50%
 
 # --- Production speed ---
 @export var speed_upgrade_cost := 10
@@ -15,14 +15,14 @@ var produced_count := 0 # Counts the number of products produced.
 @export var production_speed := 3 # Seconds to produce each product
 
 # --- Getters & Setters ---
-func get_maintenance_cost() -> int:
-	return maintenance_cost
+func get_quality_upgrade_cost() -> int:
+	return quality_upgrade_cost
 
 func get_speed_upgrade_cost() -> int:
 	return speed_upgrade_cost
 
 # --- Signals ---
-signal maintenance_applied()
+signal quality_upgrade_applied()
 signal speed_upgrade_applied()
 signal produce_product()
 
@@ -30,10 +30,10 @@ signal produce_product()
 func roll_is_defect (rng: RandomNumberGenerator) -> bool:
 	return rng.randf() < defect_chance
 
-func apply_maintenance() -> void:
-	defect_chance *= maintenance_improvement
+func apply_quality_upgrade() -> void:
+	defect_chance *= quality_upgrade_multiplier
 	print("Defect chance: ", defect_chance)
-	emit_signal("maintenance_applied")
+	emit_signal("quality_upgrade_applied")
 
 func apply_speed_upgrade() -> void:
 	production_speed *= speed_upgrade_muliplier

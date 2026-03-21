@@ -1,6 +1,8 @@
 extends Area2D
 
 var _capacity: int = 4
+var capacity_upgrade := 1
+var capacity_upgrade_cost := 20
 var _load: int = 0
 var is_full: bool = false
 @export var speed := 200
@@ -10,6 +12,7 @@ enum State { AVAILABLE, AWAY }
 var state: State = State.AVAILABLE
 
 signal product_entered # Create a signal
+signal capacity_upgrade_applied()
 
 @onready var travel_timer: Timer = $TravelTimer
 var start_position = Vector2(420, 30)
@@ -31,6 +34,9 @@ var load: int:
 			state = State.AWAY
 			travel_timer.start(travel_time)
 			print("Truck is full!")
+
+func get_capacity_upgrade_cost() -> int:
+	return capacity_upgrade_cost
 
 # Detects if an area2d node enters the trucks collision area
 func load_product(product) -> void: 
@@ -57,3 +63,8 @@ func reset_truck(): # Resets truck to it's starting position
 	load = 0
 	is_full = false
 	state = State.AVAILABLE
+
+func apply_capacity_upgrade() -> void:
+	capacity += capacity_upgrade
+	print("Capacity increased to: ", capacity)
+	emit_signal("capacity_upgrade_applied")

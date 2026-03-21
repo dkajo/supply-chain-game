@@ -37,8 +37,9 @@ func _ready():
 	# --- Connect signals to functions ---
 	ui.start_button_pressed.connect(_on_start_button_pressed)
 	ui.stop_button_pressed.connect(_on_stop_button_pressed)
-	ui.maintenance_button_pressed.connect(_on_maintenance_btn_pressed)
+	ui.quality_upgrade_button_pressed.connect(_on_quality_upgrade_btn_pressed)
 	ui.speed_upgrade_button_pressed.connect(_on_speed_upgrade_btn_pressed)
+	ui.capacity_upgrade_button_pressed.connect(_on_capacity_upgrade_btn_pressed)
 	
 	$Machine.produce_product.connect(_on_produce_product)
 	# Connect to the product_loaded signal in truck.gd and call method in this script
@@ -88,10 +89,10 @@ func _on_stop_button_pressed():
 	$Machine.stop_production()
 
 # --- Upgrades ---
-func _on_maintenance_btn_pressed() -> void:
-	if can_afford($Machine.get_maintenance_cost()):
-		decrease_balance($Machine.get_maintenance_cost())
-		$Machine.apply_maintenance()
+func _on_quality_upgrade_btn_pressed() -> void:
+	if can_afford($Machine.get_quality_upgrade_cost()):
+		decrease_balance($Machine.get_quality_upgrade_cost())
+		$Machine.apply_quality_upgrade()
 	else:
 		print("Not enough balance")
 
@@ -99,6 +100,13 @@ func _on_speed_upgrade_btn_pressed() -> void:
 	if can_afford($Machine.get_speed_upgrade_cost()):
 		decrease_balance($Machine.get_speed_upgrade_cost())
 		$Machine.apply_speed_upgrade()
+	else:
+		print("Not enough balance")
+
+func _on_capacity_upgrade_btn_pressed() -> void:
+	if can_afford($Truck.get_capacity_upgrade_cost()):
+		decrease_balance($Truck.get_capacity_upgrade_cost())
+		$Truck.apply_capacity_upgrade()
 	else:
 		print("Not enough balance")
 
