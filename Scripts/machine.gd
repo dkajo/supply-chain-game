@@ -3,21 +3,27 @@ extends Node2D
 var produced_count := 0 # Counts the number of products produced.
 
 # Chance of a product being defect.
-@export_range (0.0, 1.0, 0.01) var defect_chance := 0.8
+@export_range (0.0, 1.0, 0.01) var defect_chance := 0.9
 
 # --- Maintenance ---
 @export var maintenance_cost := 10
 @export var maintenance_improvement := 0.5 # Improves defect chance by 50%
 
 # --- Production speed ---
+@export var speed_upgrade_cost := 10
+@export var speed_upgrade_muliplier := 0.5 # Speed gets upgraded by 50% with each click of a button
 @export var production_speed := 3 # Seconds to produce each product
 
 # --- Getters & Setters ---
 func get_maintenance_cost() -> int:
 	return maintenance_cost
 
+func get_speed_upgrade_cost() -> int:
+	return speed_upgrade_cost
+
 # --- Signals ---
 signal maintenance_applied()
+signal speed_upgrade_applied()
 signal produce_product()
 
 # --- Functions ---
@@ -29,12 +35,17 @@ func apply_maintenance() -> void:
 	print("Defect chance: ", defect_chance)
 	emit_signal("maintenance_applied")
 
+func apply_speed_upgrade() -> void:
+	production_speed *= speed_upgrade_muliplier
+	print("Production speed: ", production_speed)
+	emit_signal("speed_upgrade_applied")
+
 # --- Production ---
 # Production timer controls production and is thereby the primary game engine
 func _on_production_timer_timeout(): # Holds everything that needs to happen as a product is produced
 	emit_signal("produce_product")
 	produced_count += 1 # Increment after produced product.
-	print("Prduct produced")
+	print("Product produced")
 
 func start_production():
 	$ProductionTimer.wait_time = production_speed

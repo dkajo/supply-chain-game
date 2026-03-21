@@ -4,6 +4,7 @@ extends CanvasLayer
 signal start_button_pressed
 signal stop_button_pressed
 signal maintenance_button_pressed
+signal speed_upgrade_button_pressed
 
 # --- Game Over Functions -- 
 func show_game_over():
@@ -43,3 +44,6 @@ func _on_stop_button_pressed() -> void:
 
 func _on_maintenance_btn_pressed() -> void:
 	emit_signal("maintenance_button_pressed")
+
+func _on_speed_upgrade_btn_pressed() -> void:
+	emit_signal("speed_upgrade_button_pressed")

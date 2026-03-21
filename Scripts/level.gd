@@ -1,6 +1,6 @@
 extends Node2D
 
-const STARTING_BALANCE = 10
+const STARTING_BALANCE = 12
 
 @onready var ui = $UiFacade
 
@@ -19,8 +19,10 @@ func is_game_running() -> bool:
 func start_game(): # Controls what happens when the game starts
 	ui.hide_game_over()
 	game_state = GameState.RUNNING
-	update_balance(STARTING_BALANCE)
+	reset_balance(STARTING_BALANCE)
+	$Truck.reset_truck()
 	update_truck_load_label($Truck.load, $Truck.capacity)
+	update_balance_label(balance)
 	print("Game started")
 
 func game_over(): # Controls what happens upon game over
@@ -36,6 +38,7 @@ func _ready():
 	ui.start_button_pressed.connect(_on_start_button_pressed)
 	ui.stop_button_pressed.connect(_on_stop_button_pressed)
 	ui.maintenance_button_pressed.connect(_on_maintenance_btn_pressed)
+	ui.speed_upgrade_button_pressed.connect(_on_speed_upgrade_btn_pressed)
 	
 	$Machine.produce_product.connect(_on_produce_product)
 	# Connect to the product_loaded signal in truck.gd and call method in this script
@@ -51,15 +54,26 @@ func _on_produce_product():
 func can_afford(price: int) -> bool:
 	return balance >= price
 
-func spend(price: int) -> void:
-	balance -= price
-	update_balance(balance)
+func decrease_balance(value):
+	balance -= value
+	update_balance_label(balance)
+	if balance < 0:
+		game_over()
+
+func increase_balance(value):
+	balance += value
+	update_balance_label(balance)
+	if balance < 0:
+		game_over()
+
+func reset_balance(value):
+	balance = value
 
 func scrap(product) -> void:
 	var result = product.scrap_value - product.production_cost
 	
 	update_score_label(result)
-	update_balance(result) # optional scrap penalty
+	increase_balance(result) # optional scrap penalty
 	
 	update_truck_load_label($Truck.load, $Truck.capacity)
 
@@ -73,28 +87,33 @@ func _on_start_button_pressed():
 func _on_stop_button_pressed():
 	$Machine.stop_production()
 
+# --- Upgrades ---
 func _on_maintenance_btn_pressed() -> void:
 	if can_afford($Machine.get_maintenance_cost()):
-		spend($Machine.get_maintenance_cost())
+		decrease_balance($Machine.get_maintenance_cost())
 		$Machine.apply_maintenance()
+	else:
+		print("Not enough balance")
+
+func _on_speed_upgrade_btn_pressed() -> void:
+	if can_afford($Machine.get_speed_upgrade_cost()):
+		decrease_balance($Machine.get_speed_upgrade_cost())
+		$Machine.apply_speed_upgrade()
 	else:
 		print("Not enough balance")
 
 # Fired when a product enters the truck, and simulates a product being sold
 func _on_truck_loaded_product(product): # Receive the product from the signal
 	update_score_label(product.value - product.production_cost)
-	update_balance(product.value - product.production_cost)
+	increase_balance(product.value - product.production_cost)
 	update_truck_load_label($Truck.load, $Truck.capacity)
 
 # --- Label Updates ---
-func update_balance(input_value):
-	balance += input_value
-	ui.update_balance_label(balance)
-	if balance < 0:
-		game_over()
-
 func update_score_label(score):
 	ui.update_score_label(score)
 
 func update_truck_load_label(load, capacity):
 	ui.update_truck_load_label(load, capacity)
+
+func update_balance_label(balance):
+	ui.update_balance_label(balance)

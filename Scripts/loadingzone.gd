@@ -8,5 +8,5 @@ func _on_area_entered(area: Area2D) -> void:
 		if truck.can_accept_product():
 			truck.load_product(area)
 		else:
-			level.scrap(area)
+			level.scrap(area)	
 		area.queue_free()

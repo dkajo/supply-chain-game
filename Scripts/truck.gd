@@ -46,11 +46,14 @@ func _process(delta: float): # Only want the truck to move when capacity is full
 		position += Vector2(1.0, 0) * speed * delta
 
 func _on_travel_timer_timeout() -> void:
-	position = start_position
-	load = 0
-	is_full = false
-	state = State.AVAILABLE
+	reset_truck()
 	print ("Truck Returned")
 
 func can_accept_product() -> bool: # Returns true if the truck can accept products
 	return state == State.AVAILABLE and load < capacity
+
+func reset_truck(): # Resets truck to it's starting position
+	position = start_position
+	load = 0
+	is_full = false
+	state = State.AVAILABLE
