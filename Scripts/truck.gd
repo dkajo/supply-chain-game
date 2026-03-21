@@ -69,3 +69,8 @@ func apply_capacity_upgrade() -> void:
 	capacity += capacity_upgrade
 	print("Capacity increased to: ", capacity)
 	emit_signal("capacity_upgrade_applied")
+
+func get_stats() -> Dictionary:
+	return {
+		"Capacity": capacity,
+	}

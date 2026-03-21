@@ -54,6 +54,23 @@ func _on_produce_product():
 	
 	add_child(product) # Attach node to scene tree, adds product to level.
 
+func build_game_over_stats() -> Array[Dictionary]:
+	var stats: Array[Dictionary] = []
+
+	for key in $Truck.get_stats().keys():
+		stats.append({
+			"label": key,
+			"value": $Truck.get_stats()[key]
+		})
+
+	for key in $Machine.get_stats().keys():
+		stats.append({
+			"label": key,
+			"value": $Machine.get_stats()[key]
+		})
+
+	return stats
+
 # --- Money Helpers ---
 func can_afford(price: int) -> bool:
 	return balance >= price

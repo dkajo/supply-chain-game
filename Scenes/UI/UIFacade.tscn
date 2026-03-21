@@ -135,6 +135,14 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_h1k6b")
 theme_override_styles/normal = SubResource("StyleBoxFlat_b3egh")
 text = "START"
 
+[node name="Statistics" type="ItemList" parent="GameOver"]
+layout_mode = 0
+offset_left = 695.0
+offset_top = 416.0
+offset_right = 1143.0
+offset_bottom = 612.0
+item_count = 1
+
 [connection signal="pressed" from="HUD/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="HUD/StopButton" to="." method="_on_stop_button_pressed"]
 [connection signal="pressed" from="HUD/QualityUpgradeBtn" to="." method="_on_quality_upgrade_btn_pressed"]

@@ -61,3 +61,10 @@ func reset_machine():
 	production_speed = STARTING_PRODUCTION_SPEED
 	defect_chance = STARTING_DEFECT_CHANCE
 	produced_count = 0
+
+func get_stats() -> Dictionary:
+	return {
+		"Produced": produced_count,
+		"Speed": production_speed, 
+		"Quality": 1 - defect_chance
+	}

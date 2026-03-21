@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+@onready var stats_list: ItemList = $ItemLists
+
 # --- Signals ---
 signal start_button_pressed
 signal stop_button_pressed
@@ -35,6 +37,13 @@ func update_score_label(score):
 	label.text = s
 	await get_tree().create_timer(0.8).timeout
 	label.visible = false
+
+func show_stats(stats: Array[Dictionary]) -> void:
+	stats_list.clear()
+
+	for stat in stats:
+		var line = "%s: %s" % [stat["label"], str(stat["value"])]
+		stats_list.add_item(line)
 
 # --- Button functions ---
 func _on_start_button_pressed() -> void:
