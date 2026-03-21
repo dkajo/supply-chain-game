@@ -1,5 +1,7 @@
 extends Node2D
 
+const STARTING_PRODUCTION_SPEED := 3
+const STARTING_DEFECT_CHANCE := 0.9
 var produced_count := 0 # Counts the number of products produced.
 
 # Chance of a product being defect.
@@ -53,3 +55,9 @@ func start_production():
 
 func stop_production():
 	$ProductionTimer.stop()
+
+# --- Other ---
+func reset_machine():
+	production_speed = STARTING_PRODUCTION_SPEED
+	defect_chance = STARTING_DEFECT_CHANCE
+	produced_count = 0

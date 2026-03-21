@@ -21,6 +21,7 @@ func start_game(): # Controls what happens when the game starts
 	game_state = GameState.RUNNING
 	reset_balance(STARTING_BALANCE)
 	$Truck.reset_truck()
+	$Machine.reset_machine()
 	update_truck_load_label($Truck.load, $Truck.capacity)
 	update_balance_label(balance)
 	print("Game started")
@@ -107,6 +108,7 @@ func _on_capacity_upgrade_btn_pressed() -> void:
 	if can_afford($Truck.get_capacity_upgrade_cost()):
 		decrease_balance($Truck.get_capacity_upgrade_cost())
 		$Truck.apply_capacity_upgrade()
+		update_truck_load_label($Truck.load, $Truck.capacity)
 	else:
 		print("Not enough balance")
 
