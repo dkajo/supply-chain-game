@@ -72,5 +72,5 @@ func apply_capacity_upgrade() -> void:
 
 func get_stats() -> Dictionary:
 	return {
-		"Capacity": capacity,
+		"Load capacity": capacity,
 	}

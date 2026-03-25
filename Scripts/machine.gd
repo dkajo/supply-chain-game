@@ -64,7 +64,7 @@ func reset_machine():
 
 func get_stats() -> Dictionary:
 	return {
-		"Produced": produced_count,
+		"# Produced": produced_count,
 		"Speed": production_speed, 
-		"Quality": 1 - defect_chance
+		"Quality": str((1 - defect_chance) * 100) + "%" # Formats quality as a percentage
 	}

@@ -5,7 +5,8 @@ const STARTING_BALANCE = 12
 @onready var ui = $UiFacade
 
 var product_scene: PackedScene = load("res://Scenes/product.tscn") # Enable products to be instantiated within this scene
-var balance: int # Score tracker
+var balance: int
+var balance_highscore: int # 
  
 var rng = RandomNumberGenerator.new()
 
@@ -20,6 +21,7 @@ func start_game(): # Controls what happens when the game starts
 	ui.hide_game_over()
 	game_state = GameState.RUNNING
 	reset_balance(STARTING_BALANCE)
+	balance_highscore = STARTING_BALANCE
 	$Truck.reset_truck()
 	$Machine.reset_machine()
 	update_truck_load_label($Truck.load, $Truck.capacity)
@@ -30,6 +32,7 @@ func game_over(): # Controls what happens upon game over
 	$Machine.stop_production()
 	game_state = GameState.GAME_OVER
 	ui.show_game_over()
+	ui.show_stats(build_game_over_stats())
 	# $UiFacade/GameOver.visible = true	
 
 func _ready():
@@ -56,17 +59,19 @@ func _on_produce_product():
 
 func build_game_over_stats() -> Array[Dictionary]:
 	var stats: Array[Dictionary] = []
-
-	for key in $Truck.get_stats().keys():
-		stats.append({
-			"label": key,
-			"value": $Truck.get_stats()[key]
-		})
+	
+	stats.append({"label": 'Balance Highscore', "value": balance_highscore})
 
 	for key in $Machine.get_stats().keys():
 		stats.append({
 			"label": key,
 			"value": $Machine.get_stats()[key]
+		})
+
+	for key in $Truck.get_stats().keys():
+		stats.append({
+			"label": key,
+			"value": $Truck.get_stats()[key]
 		})
 
 	return stats
@@ -78,17 +83,23 @@ func can_afford(price: int) -> bool:
 func decrease_balance(value):
 	balance -= value
 	update_balance_label(balance)
+	update_highscore(balance)
 	if balance < 0:
 		game_over()
 
 func increase_balance(value):
 	balance += value
 	update_balance_label(balance)
+	update_highscore(balance)
 	if balance < 0:
 		game_over()
 
 func reset_balance(value):
 	balance = value
+
+func update_highscore(current_balance):
+	if current_balance > balance_highscore:
+		balance_highscore = current_balance
 
 func scrap(product) -> void:
 	var result = product.scrap_value - product.production_cost

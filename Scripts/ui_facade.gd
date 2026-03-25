@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-@onready var stats_list: ItemList = $ItemLists
+@onready var stats_list: ItemList = $GameOver/Statistics
 
 # --- Signals ---
 signal start_button_pressed
@@ -12,6 +12,7 @@ signal capacity_upgrade_button_pressed
 # --- Game Over Functions -- 
 func show_game_over():
 	$GameOver.visible = true
+	# show_stats()
 	print("Game Over") # Debugging
 
 func hide_game_over():
@@ -40,6 +41,7 @@ func update_score_label(score):
 
 func show_stats(stats: Array[Dictionary]) -> void:
 	stats_list.clear()
+	stats_list.add_item("Stats:")
 
 	for stat in stats:
 		var line = "%s: %s" % [stat["label"], str(stat["value"])]
