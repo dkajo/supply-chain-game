@@ -59,6 +59,7 @@ func _on_produce_product():
 	var product = product_scene.instantiate() # Create an instance of a product
 	product.is_defect = $Machine.roll_is_defect(rng) # Defect or not decided by machine
 	product.defect_value = get_current_defect_value(product.base_value)
+	update_defect_penalty_label(get_current_defect_penalty())
 	
 	print("Current defect penalty: ", get_current_defect_penalty())
 	print("Assigned defect value: ", product.defect_value)
@@ -177,3 +178,6 @@ func update_truck_load_label(load, capacity):
 
 func update_balance_label(balance):
 	ui.update_balance_label(balance)
+
+func update_defect_penalty_label(defect_penalty):
+	ui.update_defect_penalty_label(defect_penalty)

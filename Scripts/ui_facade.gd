@@ -26,6 +26,9 @@ func update_balance_label(balance):
 func update_truck_load_label(load, capacity):
 	$HUD/TruckLoadLabel.text = "Load: %d/%d" % [load, capacity]
 
+func update_defect_penalty_label(defect_penalty):
+	$HUD/DefectPenalty.text = "Defect Penalty: %d" % defect_penalty
+
 func update_score_label(score):
 	var label = $HUD/Score
 	var s = str(score)

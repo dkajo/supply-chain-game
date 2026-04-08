@@ -55,6 +55,13 @@ offset_right = 140.0
 offset_bottom = 23.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 
+[node name="DefectPenalty" type="Label" parent="HUD"]
+layout_mode = 0
+offset_left = 200.0
+offset_right = 240.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+
 [node name="Score" type="Label" parent="HUD"]
 layout_mode = 0
 offset_left = 800.0
