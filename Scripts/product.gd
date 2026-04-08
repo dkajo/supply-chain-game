@@ -3,7 +3,7 @@ extends Area2D
 # @export allows variable to be edited in node configuration panel, := set variable to the assigned datatype
 @export var speed := 200
 @export var base_value := 10 # Added value attribute to dynamically change the value depending on other product properties
-@export var defect_value := 4 # Which value to use if the product is defect 
+@export var defect_value := 4 # Sale value if the product is defect 
 @export var scrap_value := 2 # Value to use upon scrapping product
 @export var production_cost := 6
 @export var is_defect := false : set = _set_defect # Defines a setter function to the property.

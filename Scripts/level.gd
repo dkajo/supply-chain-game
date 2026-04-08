@@ -6,7 +6,11 @@ const STARTING_BALANCE = 12
 
 var product_scene: PackedScene = load("res://Scenes/product.tscn") # Enable products to be instantiated within this scene
 var balance: int
-var balance_highscore: int # 
+var balance_highscore: int 
+
+const DEFECT_GROWTH_INTERVAL := 10
+const DEFECT_GROWTH_RATE := 1.10
+const BASE_DEFECT_PENALTY := 6.0
  
 var rng = RandomNumberGenerator.new()
 
@@ -19,7 +23,7 @@ func is_game_running() -> bool:
 
 func start_game(): # Controls what happens when the game starts
 	ui.hide_game_over()
-	game_state = GameState.RUNNING
+	game_state = GameState.RUNNING	
 	reset_balance(STARTING_BALANCE)
 	balance_highscore = STARTING_BALANCE
 	$Truck.reset_truck()
@@ -54,6 +58,10 @@ func _ready():
 func _on_produce_product():
 	var product = product_scene.instantiate() # Create an instance of a product
 	product.is_defect = $Machine.roll_is_defect(rng) # Defect or not decided by machine
+	product.defect_value = get_current_defect_value(product.base_value)
+	
+	print("Current defect penalty: ", get_current_defect_penalty())
+	print("Assigned defect value: ", product.defect_value)
 	
 	add_child(product) # Attach node to scene tree, adds product to level.
 
@@ -152,6 +160,13 @@ func _on_truck_loaded_product(product): # Receive the product from the signal
 	update_score_label(product.value - product.production_cost)
 	increase_balance(product.value - product.production_cost)
 	update_truck_load_label($Truck.load, $Truck.capacity)
+
+func get_current_defect_penalty() -> int:
+	var steps = floor($Machine.produced_count / DEFECT_GROWTH_INTERVAL)
+	return round(BASE_DEFECT_PENALTY * pow(DEFECT_GROWTH_RATE, steps))
+
+func get_current_defect_value(product_base_value: int) -> int:
+	return product_base_value - get_current_defect_penalty()
 
 # --- Label Updates ---
 func update_score_label(score):
