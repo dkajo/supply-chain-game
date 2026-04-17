@@ -1,8 +1,11 @@
 extends Area2D
 
+const CAPACITY_UPGRADE_BASE_COST := 20
+const CAPACITY_UPGRADE_COST_GROWTH := 1.30
+
 var _capacity: int = 4
 var capacity_upgrade := 1
-var capacity_upgrade_cost := 20
+var capacity_upgrade_level: int = 0
 var _load: int = 0
 var is_full: bool = false
 @export var speed := 200
@@ -37,7 +40,7 @@ var load: int:
 			print("Truck is full!")
 
 func get_capacity_upgrade_cost() -> int:
-	return capacity_upgrade_cost
+	return round(CAPACITY_UPGRADE_BASE_COST * pow(CAPACITY_UPGRADE_COST_GROWTH, capacity_upgrade_level))
 
 # Detects if an area2d node enters the trucks collision area
 func load_product(product) -> void: 
@@ -46,7 +49,8 @@ func load_product(product) -> void:
 
 func _ready():
 	position = start_position
-	travel_timer.timeout.connect(_on_travel_timer_timeout)
+	if not travel_timer.timeout.is_connected(_on_travel_timer_timeout):
+		travel_timer.timeout.connect(_on_travel_timer_timeout)
 
 func _process(delta: float): # Only want the truck to move when capacity is full
 	if state == State.AWAY:
@@ -65,8 +69,13 @@ func reset_truck(): # Resets truck to it's starting position
 	is_full = false
 	state = State.AVAILABLE
 
+func reset_truck_upgrades() -> void:
+	_capacity = 4
+	capacity_upgrade_level = 0
+
 func apply_capacity_upgrade() -> void:
 	capacity += capacity_upgrade
+	capacity_upgrade_level += 1
 	print("Capacity increased to: ", capacity)
 	emit_signal("capacity_upgrade_applied")
 

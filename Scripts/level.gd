@@ -9,8 +9,8 @@ var balance: int
 var balance_highscore: int 
 
 const DEFECT_GROWTH_INTERVAL := 10
-const DEFECT_GROWTH_RATE := 1.10
-const BASE_DEFECT_PENALTY := 6.0
+const DEFECT_GROWTH_RATE := 1.50
+const BASE_DEFECT_PENALTY := 2.0
  
 var rng = RandomNumberGenerator.new()
 
@@ -27,9 +27,14 @@ func start_game(): # Controls what happens when the game starts
 	reset_balance(STARTING_BALANCE)
 	balance_highscore = STARTING_BALANCE
 	$Truck.reset_truck()
+	$Truck.reset_truck_upgrades()
 	$Machine.reset_machine()
 	update_truck_load_label($Truck.load, $Truck.capacity)
 	update_balance_label(balance)
+	update_defect_penalty_label(BASE_DEFECT_PENALTY)
+	ui.update_quality_upgrade_button($Machine.get_quality_upgrade_cost())
+	ui.update_speed_upgrade_button($Machine.get_speed_upgrade_cost())
+	ui.update_capacity_upgrade_button($Truck.get_capacity_upgrade_cost())
 	print("Game started")
 
 func game_over(): # Controls what happens upon game over
@@ -50,6 +55,8 @@ func _ready():
 	ui.capacity_upgrade_button_pressed.connect(_on_capacity_upgrade_btn_pressed)
 	
 	$Machine.produce_product.connect(_on_produce_product)
+	$Machine.quality_upgrade_applied.connect(_on_quality_upgrade_applied)
+	$Machine.speed_upgrade_applied.connect(_on_speed_upgrade_applied)
 	# Connect to the product_loaded signal in truck.gd and call method in this script
 	$Truck.product_entered.connect(_on_truck_loaded_product)
 	$Truck.capacity_upgrade_applied.connect(_on_capacity_upgrade_applied)
@@ -130,28 +137,38 @@ func _on_stop_button_pressed():
 
 # --- Upgrades ---
 func _on_quality_upgrade_btn_pressed() -> void:
-	if can_afford($Machine.get_quality_upgrade_cost()):
-		decrease_balance($Machine.get_quality_upgrade_cost())
+	var cost = $Machine.get_quality_upgrade_cost()
+	if can_afford(cost):
+		decrease_balance(cost)
 		$Machine.apply_quality_upgrade()
 	else:
 		print("Not enough balance")
 
 func _on_speed_upgrade_btn_pressed() -> void:
-	if can_afford($Machine.get_speed_upgrade_cost()):
-		decrease_balance($Machine.get_speed_upgrade_cost())
+	var cost = $Machine.get_speed_upgrade_cost()
+	if can_afford(cost):
+		decrease_balance(cost)
 		$Machine.apply_speed_upgrade()
 	else:
 		print("Not enough balance")
 
 func _on_capacity_upgrade_btn_pressed() -> void:
-	if can_afford($Truck.get_capacity_upgrade_cost()):
-		decrease_balance($Truck.get_capacity_upgrade_cost())
+	var cost = $Truck.get_capacity_upgrade_cost()
+	if can_afford(cost):
+		decrease_balance(cost)
 		$Truck.apply_capacity_upgrade()
 	else:
 		print("Not enough balance")
 
+func _on_quality_upgrade_applied():
+	ui.update_quality_upgrade_button($Machine.get_quality_upgrade_cost())
+
+func _on_speed_upgrade_applied():
+	ui.update_speed_upgrade_button($Machine.get_speed_upgrade_cost())
+
 func _on_capacity_upgrade_applied():
 	update_truck_load_label($Truck.load, $Truck.capacity)
+	ui.update_capacity_upgrade_button($Truck.get_capacity_upgrade_cost())
 
 func _on_truck_returned():
 	update_truck_load_label($Truck.load, $Truck.capacity)

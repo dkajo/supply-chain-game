@@ -42,6 +42,15 @@ func update_score_label(score):
 	await get_tree().create_timer(0.8).timeout
 	label.visible = false
 
+func update_quality_upgrade_button(cost: int) -> void:
+	$HUD/QualityUpgradeBtn.text = "Quality Upgrade \n " + str(cost)
+
+func update_speed_upgrade_button(cost: int) -> void:
+	$HUD/SpeedUpgradeBtn.text = "Speed Upgrade \n " + str(cost)
+
+func update_capacity_upgrade_button(cost: int) -> void:
+	$HUD/CapacityUpgradeBtn.text = "Capacity Upgrade \n " + str(cost)
+
 func show_stats(stats: Array[Dictionary]) -> void:
 	stats_list.clear()
 	stats_list.add_item("Stats:")
