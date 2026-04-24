@@ -17,15 +17,14 @@ script = ExtResource("1_oi3di")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -207.0
-offset_top = -195.0
-offset_right = 789.0
-offset_bottom = 555.0
+offset_left = -132.0
+offset_top = -57.0
+offset_right = 2068.0
+offset_bottom = 1183.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(1.78108, 1.54868)
 texture = ExtResource("1_u52ul")
-stretch_mode = 6
+stretch_mode = 2
 
 [node name="ConveyorBelt" type="Sprite2D" parent="."]
 top_level = true
