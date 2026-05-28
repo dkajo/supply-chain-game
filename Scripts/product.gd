@@ -23,7 +23,7 @@ func _set_defect(value: bool) -> void:
 	
 func _ready():
 	# Set start position on screen 
-	position = Vector2(-300, 30)
+	position = Vector2(0, 380)
 
 func _process(delta: float): # function runs every frame
 	# Set moving speed, delta is used to adjust speed to realtime and not depend on the framerate.
