@@ -19,7 +19,7 @@ signal capacity_upgrade_applied()
 signal truck_returned
 
 @onready var travel_timer: Timer = $TravelTimer
-var start_position = Vector2(420, 30)
+var start_position = Vector2(1500, 800)
 
 # Setters/Getters
 var capacity: int:

@@ -39,7 +39,7 @@ z_index = 1
 position = Vector2(60, 80)
 
 [node name="Truck" parent="." instance=ExtResource("6_1ainy")]
-position = Vector2(1050, 450)
+position = Vector2(600, 350)
 scale = Vector2(0.7, 0.7)
 
 [node name="Loadingzone" parent="." instance=ExtResource("7_8c0lf")]
