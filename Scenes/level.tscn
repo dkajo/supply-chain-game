@@ -28,7 +28,7 @@ stretch_mode = 2
 
 [node name="ConveyorBelt" type="Sprite2D" parent="."]
 top_level = true
-position = Vector2(593, 517)
+position = Vector2(880, 876)
 scale = Vector2(0.478547, 0.478547)
 texture = ExtResource("3_f2txt")
 
@@ -36,9 +36,11 @@ texture = ExtResource("3_f2txt")
 
 [node name="Machine" parent="." instance=ExtResource("4_0b4ue")]
 z_index = 1
-position = Vector2(-22, 53)
+position = Vector2(60, 80)
 
 [node name="Truck" parent="." instance=ExtResource("6_1ainy")]
-position = Vector2(390, -45)
+position = Vector2(1050, 450)
+scale = Vector2(0.7, 0.7)
 
 [node name="Loadingzone" parent="." instance=ExtResource("7_8c0lf")]
+position = Vector2(60, 220)

@@ -3,13 +3,13 @@
 [ext_resource type="Script" uid="uid://bsawmri4ugx32" path="res://Scripts/loadingzone.gd" id="1_vus5j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3t4et"]
-size = Vector2(168, 278)
+size = Vector2(278, 475)
 
 [node name="Loadingzone" type="Area2D"]
 script = ExtResource("1_vus5j")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(969, 420)
+position = Vector2(1252, 518)
 shape = SubResource("RectangleShape2D_3t4et")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
