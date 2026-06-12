@@ -1,18 +1,39 @@
-[gd_scene load_steps=9 format=3 uid="uid://b6i4ou8t1n8lh"]
+[gd_scene load_steps=12 format=3 uid="uid://b6i4ou8t1n8lh"]
 
 [ext_resource type="Script" uid="uid://dkajc6be2rsx5" path="res://Scripts/ui_facade.gd" id="1_h1k6b"]
+[ext_resource type="StyleBox" uid="uid://b0o6g4sn0ieru" path="res://Scenes/UI/NormalButton.tres" id="2_b3egh"]
+[ext_resource type="StyleBox" uid="uid://ct15lng5uigq5" path="res://Scenes/UI/HoverButton.tres" id="2_rbqoo"]
+[ext_resource type="StyleBox" uid="uid://bq3trfvm6y0x1" path="res://Scenes/UI/PressedButton.tres" id="3_1g3k4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qxo88"]
 bg_color = Color(0, 0.72549, 0.117647, 0.572549)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rbqoo"]
-bg_color = Color(2.26215e-06, 0.727337, 0.118172, 1)
+bg_color = Color(0.482353, 0.788235, 0.435294, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.183, 0.3, 0.165, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1g3k4"]
 bg_color = Color(0.858824, 0.176471, 0, 0.784314)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f6eae"]
-bg_color = Color(0.860567, 0.177546, 0, 1)
+bg_color = Color(0.898039, 0.45098, 0.45098, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.39, 0.195, 0.195, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8v2eh"]
 bg_color = Color(1, 0.352941, 0.160784, 0.654902)
@@ -34,10 +55,11 @@ offset_bottom = 40.0
 
 [node name="StartButton" type="Button" parent="HUD"]
 layout_mode = 0
-offset_left = 433.0
-offset_top = 829.0
-offset_right = 494.0
-offset_bottom = 861.0
+offset_left = 329.0
+offset_top = 790.0
+offset_right = 400.0
+offset_bottom = 849.0
+theme_override_font_sizes/font_size = 16
 theme_override_styles/hover = SubResource("StyleBoxFlat_qxo88")
 theme_override_styles/normal = SubResource("StyleBoxFlat_rbqoo")
 text = "START"
@@ -47,36 +69,39 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
 
 [node name="TruckLoadLabel" type="Label" parent="HUD"]
 layout_mode = 0
-offset_left = 100.0
-offset_right = 140.0
-offset_bottom = 23.0
+offset_left = 300.0
+offset_right = 340.0
+offset_bottom = 45.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
 
 [node name="DefectPenalty" type="Label" parent="HUD"]
 layout_mode = 0
-offset_left = 200.0
-offset_right = 240.0
-offset_bottom = 23.0
+offset_left = 600.0
+offset_right = 640.0
+offset_bottom = 45.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
 
 [node name="Score" type="Label" parent="HUD"]
 layout_mode = 0
-offset_left = 800.0
-offset_top = 320.0
-offset_right = 836.0
-offset_bottom = 343.0
+offset_left = 1133.0
+offset_top = 645.0
+offset_right = 1169.0
+offset_bottom = 700.0
 theme_override_colors/font_color = Color(0.960784, 0, 0, 1)
 theme_override_font_sizes/font_size = 40
 
 [node name="StopButton" type="Button" parent="HUD"]
 layout_mode = 0
-offset_left = 503.0
-offset_top = 829.0
-offset_right = 564.0
-offset_bottom = 861.0
+offset_left = 417.0
+offset_top = 791.0
+offset_right = 483.0
+offset_bottom = 849.0
 theme_override_styles/pressed = SubResource("StyleBoxFlat_1g3k4")
 theme_override_styles/normal = SubResource("StyleBoxFlat_f6eae")
 text = "STOP"
@@ -84,27 +109,56 @@ text = "STOP"
 [node name="QualityUpgradeBtn" type="Button" parent="HUD"]
 layout_mode = 0
 offset_left = 22.0
-offset_top = 995.0
-offset_right = 157.0
-offset_bottom = 1049.0
+offset_top = 974.0
+offset_right = 219.0
+offset_bottom = 1050.0
+theme_override_colors/font_hover_pressed_color = Color(0.176471, 0.294118, 0.372549, 1)
+theme_override_colors/font_hover_color = Color(0.176471, 0.294118, 0.372549, 1)
+theme_override_colors/font_color = Color(0.176471, 0.294118, 0.372549, 1)
+theme_override_colors/font_focus_color = Color(0.176471, 0.294118, 0.372549, 1)
+theme_override_colors/font_pressed_color = Color(0.176471, 0.294118, 0.372549, 1)
+theme_override_font_sizes/font_size = 24
+theme_override_styles/hover = ExtResource("2_rbqoo")
+theme_override_styles/pressed = ExtResource("3_1g3k4")
+theme_override_styles/normal = ExtResource("2_b3egh")
 text = "Quality Upgrade
 10"
 
 [node name="SpeedUpgradeBtn" type="Button" parent="HUD"]
 layout_mode = 0
-offset_left = 182.0
-offset_top = 995.0
-offset_right = 308.0
+offset_left = 279.0
+offset_top = 973.0
+offset_right = 463.0
 offset_bottom = 1049.0
+theme_override_colors/font_disabled_color = Color(0.176471, 0.294118, 0.372549, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.176471, 0.294118, 0.372549, 1)
+theme_override_colors/font_hover_color = Color(0.176471, 0.294118, 0.372549, 1)
+theme_override_colors/font_color = Color(0.176471, 0.294118, 0.372549, 1)
+theme_override_colors/font_focus_color = Color(0.176471, 0.294118, 0.372549, 1)
+theme_override_colors/font_pressed_color = Color(0.176471, 0.294118, 0.372549, 1)
+theme_override_font_sizes/font_size = 24
+theme_override_styles/hover = ExtResource("2_rbqoo")
+theme_override_styles/pressed = ExtResource("3_1g3k4")
+theme_override_styles/normal = ExtResource("2_b3egh")
+action_mode = 0
 text = "Speed Upgrade
 10"
 
 [node name="CapacityUpgradeBtn" type="Button" parent="HUD"]
 layout_mode = 0
-offset_left = 333.0
-offset_top = 995.0
-offset_right = 478.0
-offset_bottom = 1049.0
+offset_left = 523.0
+offset_top = 974.0
+offset_right = 735.0
+offset_bottom = 1050.0
+theme_override_colors/font_hover_pressed_color = Color(0.176471, 0.294118, 0.372549, 1)
+theme_override_colors/font_hover_color = Color(0.176471, 0.294118, 0.372549, 1)
+theme_override_colors/font_color = Color(0.176471, 0.294118, 0.372549, 1)
+theme_override_colors/font_focus_color = Color(0.176471, 0.294118, 0.372549, 1)
+theme_override_colors/font_pressed_color = Color(0.176471, 0.294118, 0.372549, 1)
+theme_override_font_sizes/font_size = 24
+theme_override_styles/hover = ExtResource("2_rbqoo")
+theme_override_styles/pressed = ExtResource("3_1g3k4")
+theme_override_styles/normal = ExtResource("2_b3egh")
 text = "Capacity Upgrade
 20"
 

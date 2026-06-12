@@ -1,31 +1,32 @@
 [gd_scene load_steps=5 format=3 uid="uid://drhsev80xy1d8"]
 
 [ext_resource type="Script" uid="uid://qhpwt1t12txv" path="res://Scripts/product.gd" id="1_0woea"]
-[ext_resource type="Texture2D" uid="uid://8omeosaqone1" path="res://Assets/box.png" id="2_6p1sa"]
-[ext_resource type="Texture2D" uid="uid://5rua3bpq63cu" path="res://Assets/defect_icon.png" id="3_57sec"]
+[ext_resource type="Texture2D" uid="uid://bf8xgugo4k4nb" path="res://Assets/boxv2.png" id="2_0woea"]
+[ext_resource type="Texture2D" uid="uid://bkiet1o5v6x7q" path="res://Assets/defect_icon2.webp" id="3_0woea"]
 
 [sub_resource type="GDScript" id="GDScript_u8fb1"]
 script/source = "extends Sprite2D
 "
 
 [node name="Product" type="Area2D" groups=["product"]]
+top_level = true
 script = ExtResource("1_0woea")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(606.465, 401.438)
-scale = Vector2(0.128301, 0.128301)
-texture = ExtResource("2_6p1sa")
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("2_0woea")
 script = SubResource("GDScript_u8fb1")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(141.225, 121.488)
 scale = Vector2(0.737772, 0.737772)
-polygon = PackedVector2Array(698, 349, 697, 425, 637, 442, 573, 423, 574, 351, 632, 334)
+polygon = PackedVector2Array(695.032, 309.733, 695.032, 442.565, 559.489, 443.92, 562.199, 308.377)
 
 [node name="DefectMarker" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(633, 413)
-scale = Vector2(0.0473684, 0.0473684)
-texture = ExtResource("3_57sec")
+position = Vector2(620, 420)
+scale = Vector2(0.0651128, 0.0651128)
+texture = ExtResource("3_0woea")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

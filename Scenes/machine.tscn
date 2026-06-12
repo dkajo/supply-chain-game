@@ -1,15 +1,15 @@
 [gd_scene load_steps=3 format=3 uid="uid://cqa28fdtdx1x2"]
 
-[ext_resource type="Texture2D" uid="uid://b0s6p2jjn82pj" path="res://Assets/machine.png" id="1_6a4ke"]
 [ext_resource type="Script" uid="uid://vtpkctr8sptg" path="res://Scripts/machine.gd" id="1_13m1l"]
+[ext_resource type="Texture2D" uid="uid://do3t5dvkphjj5" path="res://Assets/machinev2.png" id="2_h612m"]
 
 [node name="Machine" type="Node2D"]
 script = ExtResource("1_13m1l")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(437, 732)
-scale = Vector2(0.418129, 0.418129)
-texture = ExtResource("1_6a4ke")
+position = Vector2(344, 723)
+scale = Vector2(0.522744, 0.522744)
+texture = ExtResource("2_h612m")
 
 [node name="ProductionTimer" type="Timer" parent="."]
 
