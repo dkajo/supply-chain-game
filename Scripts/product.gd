@@ -19,7 +19,9 @@ func _get_production_cost() -> int:
 func _set_defect(value: bool) -> void:
 	is_defect = value
 	# Displays overlay sprite if the product is defect
-	$DefectMarker.visible = is_defect 
+	$DefectMarker.visible = is_defect
+	# Subtle red tint on the box sprite to give a second visual cue
+	$Sprite2D.modulate = Color(1.0, 0.78, 0.78) if is_defect else Color.WHITE
 	
 func _ready():
 	# Set start position on screen 

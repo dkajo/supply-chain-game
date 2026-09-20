@@ -1,6 +1,10 @@
 extends CanvasLayer
 
-@onready var stats_list: ItemList = $GameOver/Statistics
+const STATS_TEXT_COLOR := Color(0.176471, 0.294118, 0.372549, 1)
+const STATS_TITLE_SIZE := 44
+const STATS_ROW_SIZE := 30
+
+@onready var stats_rows: VBoxContainer = $GameOver/Statistics/Rows
 
 # --- Signals ---
 signal start_button_pressed
@@ -34,13 +38,21 @@ func update_score_label(score):
 	var s = str(score)
 	if score >= 0:
 		s = '+' + s
-		label.add_theme_color_override("font_color", Color.WEB_GREEN)
+		label.add_theme_color_override("font_color", Color("#7bc96f"))
 	else:
-		label.add_theme_color_override("font_color", Color.RED)
+		label.add_theme_color_override("font_color", Color("#e57373"))
+
+	# Reset position and opacity before animating
+	label.position.y = 320.0
+	label.modulate.a = 1.0
 	label.visible = true
 	label.text = s
-	await get_tree().create_timer(0.8).timeout
-	label.visible = false
+
+	var tween = create_tween()
+	tween.set_parallel(true)
+	tween.tween_property(label, "position:y", 285.0, 0.65)
+	tween.tween_property(label, "modulate:a", 0.0, 0.65)
+	tween.chain().tween_callback(func(): label.visible = false)
 
 func update_quality_upgrade_button(cost: int) -> void:
 	$HUD/QualityUpgradeBtn.text = "Quality Upgrade \n " + str(cost)
@@ -52,12 +64,34 @@ func update_capacity_upgrade_button(cost: int) -> void:
 	$HUD/CapacityUpgradeBtn.text = "Capacity Upgrade \n " + str(cost)
 
 func show_stats(stats: Array[Dictionary]) -> void:
-	stats_list.clear()
-	stats_list.add_item("Stats:")
+	for child in stats_rows.get_children():
+		stats_rows.remove_child(child)
+		child.queue_free()
+
+	stats_rows.add_child(_make_stat_label("Final Stats", STATS_TITLE_SIZE, HORIZONTAL_ALIGNMENT_CENTER))
+
+	var divider := HSeparator.new()
+	var divider_style := StyleBoxLine.new()
+	divider_style.color = STATS_TEXT_COLOR
+	divider_style.thickness = 3
+	divider.add_theme_stylebox_override("separator", divider_style)
+	stats_rows.add_child(divider)
 
 	for stat in stats:
-		var line = "%s: %s" % [stat["label"], str(stat["value"])]
-		stats_list.add_item(line)
+		var row := HBoxContainer.new()
+		var name_label := _make_stat_label(str(stat["label"]), STATS_ROW_SIZE)
+		name_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		row.add_child(name_label)
+		row.add_child(_make_stat_label(str(stat["value"]), STATS_ROW_SIZE, HORIZONTAL_ALIGNMENT_RIGHT))
+		stats_rows.add_child(row)
+
+func _make_stat_label(text: String, font_size: int, alignment := HORIZONTAL_ALIGNMENT_LEFT) -> Label:
+	var label := Label.new()
+	label.text = text
+	label.horizontal_alignment = alignment
+	label.add_theme_font_size_override("font_size", font_size)
+	label.add_theme_color_override("font_color", STATS_TEXT_COLOR)
+	return label
 
 # --- Button functions ---
 func _on_start_button_pressed() -> void:

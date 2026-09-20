@@ -1,46 +1,46 @@
-[gd_scene load_steps=8 format=3 uid="uid://drpixk3fevjyc"]
+[gd_scene format=3 uid="uid://drpixk3fevjyc"]
 
-[ext_resource type="Script" uid="uid://bh6cdnbejc6d5" path="res://Scripts/level.gd" id="1_oi3di"]
-[ext_resource type="Texture2D" uid="uid://cq0dd42hqvd7t" path="res://Assets/background.png" id="1_u52ul"]
-[ext_resource type="Texture2D" uid="uid://vn47ds0a3f15" path="res://Assets/conveyorbeltv2.png" id="3_8c0lf"]
+[ext_resource type="Script" uid="uid://dfiyca61mhrek" path="res://Scripts/level.gd" id="1_oi3di"]
+[ext_resource type="Texture2D" uid="uid://br6lfx1cwu7gm" path="res://Assets/background.png" id="1_u52ul"]
+[ext_resource type="Texture2D" uid="uid://dsocyrttl8v57" path="res://Assets/conveyorbeltv2.png" id="3_8c0lf"]
 [ext_resource type="PackedScene" uid="uid://cqa28fdtdx1x2" path="res://Scenes/machine.tscn" id="4_0b4ue"]
 [ext_resource type="PackedScene" uid="uid://b6i4ou8t1n8lh" path="res://Scenes/UI/UIFacade.tscn" id="6_0f350"]
 [ext_resource type="PackedScene" uid="uid://bjkhviq24hlog" path="res://Scenes/truck.tscn" id="6_1ainy"]
 [ext_resource type="PackedScene" uid="uid://bb0wl4thlavh0" path="res://Scenes/loadingzone.tscn" id="7_8c0lf"]
 
-[node name="Level" type="Node2D"]
+[node name="Level" type="Node2D" unique_id=1531912689]
 script = ExtResource("1_oi3di")
 
-[node name="UI" type="CanvasLayer" parent="."]
+[node name="UI" type="CanvasLayer" parent="." unique_id=1182986620]
 
-[node name="Background" type="TextureRect" parent="."]
+[node name="Background" type="TextureRect" parent="." unique_id=1741014652]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -132.0
-offset_top = -57.0
-offset_right = 2068.0
-offset_bottom = 1183.0
+offset_left = -28.0
+offset_top = -116.0
+offset_right = 2172.0
+offset_bottom = 1124.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_u52ul")
 stretch_mode = 2
 
-[node name="ConveyorBelt" type="Sprite2D" parent="."]
+[node name="ConveyorBelt" type="Sprite2D" parent="." unique_id=773523492]
 top_level = true
 position = Vector2(849, 902)
 scale = Vector2(0.756001, 0.756001)
 texture = ExtResource("3_8c0lf")
 
-[node name="UiFacade" parent="." instance=ExtResource("6_0f350")]
+[node name="UiFacade" parent="." unique_id=184616768 instance=ExtResource("6_0f350")]
 
-[node name="Machine" parent="." instance=ExtResource("4_0b4ue")]
+[node name="Machine" parent="." unique_id=1664244768 instance=ExtResource("4_0b4ue")]
 z_index = 1
 position = Vector2(60, 80)
 
-[node name="Truck" parent="." instance=ExtResource("6_1ainy")]
+[node name="Truck" parent="." unique_id=56580210 instance=ExtResource("6_1ainy")]
 position = Vector2(1514, 776)
 scale = Vector2(0.7, 0.7)
 
-[node name="Loadingzone" parent="." instance=ExtResource("7_8c0lf")]
+[node name="Loadingzone" parent="." unique_id=1462141261 instance=ExtResource("7_8c0lf")]
 position = Vector2(60, 220)

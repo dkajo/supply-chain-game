@@ -71,6 +71,7 @@ func _on_produce_product():
 	print("Current defect penalty: ", get_current_defect_penalty())
 	print("Assigned defect value: ", product.defect_value)
 	
+	product.z_index = 2 # Render above conveyor belt (z_index 0) and machine (z_index 1)
 	add_child(product) # Attach node to scene tree, adds product to level.
 
 func build_game_over_stats() -> Array[Dictionary]:
