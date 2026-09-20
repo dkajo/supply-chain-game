@@ -28,3 +28,6 @@ drawing_board.svg
 *.dmg
 *.zip
 *.exe
+
+# Exported game builds
+builds/
